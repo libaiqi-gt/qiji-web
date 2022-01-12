@@ -1,9 +1,8 @@
 import React from 'react'
+import LayoutPage from './Layout'
 
 export default function App() {
   return (
-    <div>
-      第一个应用
-    </div>
+    <LayoutPage/>
   )
 }
