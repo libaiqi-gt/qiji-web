@@ -1,6 +1,8 @@
 import React from 'react'
 import { Layout } from 'antd';
+import { Routes, Route } from 'react-router-dom'
 import MainSider from './components/MainSider';
+import WelCome from './page/WelCome';
 
 export default function LayoutPage() {
   const { Header, Sider, Content } = Layout;
@@ -11,7 +13,11 @@ export default function LayoutPage() {
       </Sider>
       <Layout>
         <Header>Header</Header>
-        <Content>Content</Content>
+        <Content>
+          <Routes>
+            <Route path="/" element={<WelCome/>}></Route>
+          </Routes>
+        </Content>
       </Layout>
     </Layout>
   )

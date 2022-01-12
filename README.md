@@ -36,3 +36,9 @@
     |- index.js       # 入口文件
 - package.json        # 项目配置文件
 ```
+
+### 样式隔离规则
+
+采用scss的嵌套语法以及css属性选择器进行样式隔离
+- 组件绑定data-component为组件名。 例：data-component="app"
+- scss样式包裹对应的属性名再嵌套样式。例：[data-component=app]{}
