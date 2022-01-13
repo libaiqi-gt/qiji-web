@@ -1,9 +1,9 @@
 import { Menu } from 'antd'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { routeConfig } from '@/router'
-import LogoImage from '@/asset/image/logo.png'
-import './index.scss'
+// import { useNavigate } from 'react-router-dom'
+import { routeConfig } from '../../router'
+import LogoImage from '../../asset/image/logo.png'
+import tw, { styled } from 'twin.macro'
 
 export default function MainSider() {
   const handleClick = item => {
@@ -20,14 +20,22 @@ export default function MainSider() {
       ) : null
     )
   
+  const MainSiderContainer = styled.div`
+    height: 100vh;
+    text-align: center;
+  `
+  const LogoContainer = styled.div`
+    ${tw`w-full`}
+    height: 60px;
+  `
   return (
-    <div data-component="MainSider">
-      <div className='logo'>
+    <MainSiderContainer>
+      <LogoContainer>
         <img src={LogoImage} />
-      </div>
+      </LogoContainer>
       <Menu theme='dark' mode='inline' onClick={handleClick}>
         {renderMenu(routeConfig)}
       </Menu>
-    </div>
+    </MainSiderContainer>
   )
 }

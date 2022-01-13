@@ -1,7 +1,7 @@
 import * as AntdIcons from '@ant-design/icons'
 import { createElement } from 'react'
-import WelCome from "@/page/WelCome";
-import Home from "@/page/Home";
+import WelCome from "../page/WelCome";
+import Home from "../page/Home";
 import UserInfo from '../page/Home/UserInfo';
 
 export const routeConfig = [
