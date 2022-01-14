@@ -8,6 +8,9 @@
 - [`react-router-dom`](https://reactrouter.com/) - `v6.2.1`
 - [`antd`](https://ant-design.gitee.io/index-cn) - `v4.18.3`
 - [`sass`](https://www.sass.hk/) - `v1.47.0`
+- [`styled-components`](https://styled-components.com/) - `v5.3.3`
+- [`tailwindcss`](https://tailwindcss.com/) - `v3.0.13`
+- [`twin.macro`](https://github.com/ben-rogerson/twin.macro) - `v2.8.2`
 
 ### 项目目录结构
 
@@ -25,7 +28,7 @@
         |- Main/      # main 模块
         |- ...
     |- store/         # 状态管理库部分
-        |- someStore.js
+        |- someAtom.js
         |- ...
     |- api/       # 网络服务部分，和后端暴露的 controller 一一对应
         |- someApi.js
@@ -42,3 +45,5 @@
 1、采用scss的嵌套语法以及css属性选择器进行样式隔离
 - 组件绑定data-component为组件名。 例：data-component="app"
 - scss样式包裹对应的属性名再嵌套样式。例：[data-component=app]{}
+
+2、采用twin.macro进行样式隔离
