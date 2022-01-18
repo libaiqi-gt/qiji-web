@@ -11,6 +11,7 @@
 - [`styled-components`](https://styled-components.com/) - `v5.3.3`
 - [`tailwindcss`](https://tailwindcss.com/) - `v3.0.13`
 - [`twin.macro`](https://github.com/ben-rogerson/twin.macro) - `v2.8.2`
+- [`axios`](https://axios-http.com/) - `v0.24.0`
 
 ### 项目目录结构
 

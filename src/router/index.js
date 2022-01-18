@@ -7,20 +7,20 @@ const UserInfo = lazy(() => import('../page/Home/UserInfo'));
 
 export const routeConfig = [
   {
-    path: '/',
-    component: <WelCome/>,
+    path: '/main',
+    element: <WelCome/>,
     name: '简介',
     menuType: 'PAGE'
   },
   {
-    path: '/Home',
+    path: '/main/Home',
     name: '我的',
     menuType: 'SUBMENU',
     icon: createElement(AntdIcons['UserOutlined']),
     children: [
       {
-        path: '/Home/UserInfo',
-        component: <UserInfo/>,
+        path: '/main/Home/UserInfo',
+        element: <UserInfo/>,
         name: '个人信息',
         menuType: 'MENU',
         icon: createElement(AntdIcons['BarsOutlined'])
@@ -28,10 +28,10 @@ export const routeConfig = [
     ]
   },
   {
-    path: '/integralMall',
-    component: <Home/>,
+    path: '/main/integralMall',
+    element: <Home/>,
     name: '积分中心',
     menuType: 'MENU',
-    icon: createElement(AntdIcons['UserOutlined']),
+    icon: createElement(AntdIcons['GiftOutlined']),
   }
 ]

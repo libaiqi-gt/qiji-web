@@ -22,12 +22,12 @@ export default function MainSider() {
   };
 
   useEffect(() => {
-    let pathName = location.pathname.split('/');
+    let pathName = location.pathname.indexOf('/main') === 0 ? location.pathname.split('/main')[1].split('/') : location.pathname.split('/');
     pathName = pathName.filter(item => ( item && item.trim() ));
     // 只存在二级菜单可用（待优化）
     if (pathName.length !== 0) {
-      setOpenKeys([`/${pathName[0]}`]);
-      setselectedKeys(pathName.length === 2 ? [`/${pathName[0]}`, `/${pathName.join('/')}`] : [`/${pathName[0]}`]);
+      setOpenKeys([`/main/${pathName[0]}`]);
+      setselectedKeys(pathName.length === 2 ? [`/main/${pathName[0]}`, `/main/${pathName.join('/')}`] : [`/main/${pathName[0]}`]);
     }
   },[location])
 
@@ -54,12 +54,13 @@ export default function MainSider() {
         <img src={LogoImage} alt='logo' tw="h-full m-auto" />
       </LogoContainer>
       <Menu 
-        theme='dark' 
-        mode='inline' 
+        theme='dark'
+        mode='inline'
         onClick={handleClick}
         selectedKeys={selectedKeys}
         openKeys={openKeys}
-        onOpenChange={handleOpenChange}>
+        onOpenChange={handleOpenChange}
+      >
         {renderMenu(routeConfig)}
       </Menu>
     </MainSiderContainer>
