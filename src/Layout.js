@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react'
-import { Layout } from 'antd';
+import { Layout, Spin } from 'antd';
 import { useRoutes, Outlet } from 'react-router-dom'
 import { routeConfig } from './router'
-import MainSider from './components/MainSider';
+import MainSider from 'components/MainSider';
+import MainHeader from 'components/MainHeader'
 
 export default function LayoutPage() {
   const { Header, Sider, Content } = Layout;
@@ -12,9 +13,11 @@ export default function LayoutPage() {
         <MainSider/>
       </Sider>
       <Layout>
-        <Header>Header</Header>
+        <Header>
+          <MainHeader />
+        </Header>
         <Content>
-          <Suspense fallback={<h2>加载中...</h2>}>
+          <Suspense fallback={<Spin tip='拼命加载中...' />}>
             {useRoutes(routeConfig)}
           </Suspense>
           <Outlet />

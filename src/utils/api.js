@@ -1,6 +1,5 @@
 import axios from "axios";
 import qs from 'qs';
-import { history } from 'App';
 
 const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:4523/mock/577456' : '/api'
 
@@ -26,7 +25,8 @@ api.interceptors.request.use(async config => {
 
 api.interceptors.response.use(({ data, status }) => {
   if (status === 401) {
-    history.push('/login');
+    // 路由跳转至登录页面
+    window.location.href = '/login';
   }
   if (data instanceof Blob || data.success) {
     return data;

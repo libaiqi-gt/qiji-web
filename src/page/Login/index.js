@@ -1,22 +1,30 @@
 import React from 'react'
 import 'twin.macro'
 import "styled-components/macro"
-import { Form, Input, Button, message } from 'antd';
+import { Form, Input, Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import webApi from 'api'
+import { userInfoAtom } from 'store/userInfoAtom'
+import { useSetRecoilState } from 'recoil'
 
 export default function Login() {
 
   const navigate = useNavigate();
 
+  const setUserInfo = useSetRecoilState(userInfoAtom);
+
   const onFinish = (values) => {
     webApi.userLogin(values).then(res => {
-      localStorage.setItem('userGuid', res.data.userGuid);
-      localStorage.setItem('Authorization', res.data.token);
-      navigate('/main');
+      if (res.code === 0) {
+        localStorage.setItem('userGuid', res.data.userGuid);
+        localStorage.setItem('Authorization', res.data.token);
+        setUserInfo(res.data);
+        navigate('/main');
+      }
     }).catch(err => {
       localStorage.removeItem('Authorization');
-      localStorage.removeItem('userGuid')
+      localStorage.removeItem('userGuid');
+      setUserInfo({});
       message.error(err.message);
     });
   };
