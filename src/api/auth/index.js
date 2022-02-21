@@ -17,8 +17,8 @@ const auth = {
    * @param {Object} params
    * @param {String} userGuid
    */
-   getUserInfo(params) {
-    return api.get(`${modules}/getUserInfo`, params);
+   getUserByUserGuid(userGuid) {
+    return api.get(`${modules}/getUserByUserGuid?userGuid=${userGuid}`);
   }
 }
 

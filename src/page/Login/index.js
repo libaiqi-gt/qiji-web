@@ -15,9 +15,9 @@ export default function Login() {
 
   const onFinish = (values) => {
     webApi.userLogin(values).then(res => {
-      if (res.code === 0) {
+      if (res.code === 200) {
         localStorage.setItem('userGuid', res.data.userGuid);
-        localStorage.setItem('Authorization', res.data.token);
+        localStorage.setItem('Authorization', res.token);
         setUserInfo(res.data);
         navigate('/main');
       }
@@ -25,7 +25,7 @@ export default function Login() {
       localStorage.removeItem('Authorization');
       localStorage.removeItem('userGuid');
       setUserInfo({});
-      message.error(err.message);
+      message.error(err);
     });
   };
 
@@ -37,7 +37,7 @@ export default function Login() {
         >
           <Form.Item
             label="账户"
-            name="userAccount"
+            name="account"
             rules={[{ required: true, message: '请输入账户' }]}
           >
             <Input />

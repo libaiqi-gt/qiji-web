@@ -1,7 +1,7 @@
 import axios from "axios";
 import qs from 'qs';
 
-const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:4523/mock/577456' : '/api'
+const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:7001/' : '/api'
 
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -28,9 +28,9 @@ api.interceptors.response.use(({ data, status }) => {
     // 路由跳转至登录页面
     window.location.href = '/login';
   }
-  if (data instanceof Blob || data.success) {
+  if (data instanceof Blob || data.code === 200) {
     return data;
   } else {
-    throw data.message;
+    throw data.msg;
   }
 })

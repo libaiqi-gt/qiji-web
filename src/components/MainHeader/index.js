@@ -14,12 +14,12 @@ export default function MainHeader() {
   const userGuid = localStorage.getItem('userGuid');
 
   useEffect(() => {
-    if (!userInfo.userGuid && userGuid) getUserInfo();
+    if (!userInfo.userGuid && userGuid) getUserByUserGuid();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   
-  const getUserInfo = () => {
-    webApi.getUserInfo({ userGuid }).then(res => {
-      if (res.code === 0) {
+  const getUserByUserGuid = () => {
+    webApi.getUserByUserGuid(userGuid).then(res => {
+      if (res.code === 200) {
         setUserInfo(res.data);
       }
     }).catch(err => {
@@ -31,7 +31,7 @@ export default function MainHeader() {
     <div tw='w-full h-full flex justify-end items-center'>
       {/* <Avatar size="large" icon={<UserOutlined />} /> */}
       <Avatar src={userInfo.avatar} />
-      <span tw='text-gray-100 pl-3'>{userInfo.userName || userInfo.userAccount}</span>
+      <span tw='text-gray-100 pl-3'>{userInfo.userName || userInfo.account}</span>
     </div>
   );
 }
