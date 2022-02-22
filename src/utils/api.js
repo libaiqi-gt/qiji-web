@@ -28,9 +28,15 @@ api.interceptors.response.use(({ data, status }) => {
     // 路由跳转至登录页面
     window.location.href = '/login';
   }
+  console.log(data, '进入1');
   if (data instanceof Blob || data.code === 200) {
     return data;
   } else {
-    throw data.msg;
+    return Promise.reject({message: data.msg});
   }
+}, error => {
+  if (error.message === 'Network Error') {
+    error.message = '抱歉，系统正在维护中，请稍后重试！';
+  }
+  return Promise.reject(error);
 })
