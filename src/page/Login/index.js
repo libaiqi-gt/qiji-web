@@ -1,11 +1,11 @@
 import React from 'react'
-import 'twin.macro'
-import "styled-components/macro"
 import { Form, Input, Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import webApi from 'api'
 import { userInfoAtom } from 'store/userInfoAtom'
 import { useSetRecoilState } from 'recoil'
+import tw, { styled } from 'twin.macro'
+import "styled-components/macro"
 
 export default function Login() {
 
@@ -29,33 +29,40 @@ export default function Login() {
     });
   };
 
+  const LoginContainer = styled.div`
+    ${tw`w-full h-screen`}
+    background: url('../../../src/aseet/image/bg.png')
+  `
   return (
-    <div tw="w-full h-screen flex	justify-center items-center bg-red-50">
-      <div tw="w-96 h-52 flex	justify-center items-center rounded-lg shadow-lg bg-blue-300">
-        <Form
-          onFinish={onFinish}
-        >
-          <Form.Item
-            label="账户"
-            name="account"
-            rules={[{ required: true, message: '请输入账户' }]}
+    <LoginContainer>
+      <div tw="w-full h-screen flex	justify-center items-center bg-login-bg bg-no-repeat bg-right-bottom">
+        <div tw="w-96 flex flex-col justify-center items-center rounded-lg shadow-lg bg-white">
+          <h1 tw="text-3xl py-6">登录</h1>
+          <Form
+            onFinish={onFinish}
           >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="密码"
-            name="password"
-            rules={[{ required: true, message: '请输入密码' }]}
-          >
-            <Input.Password />
-          </Form.Item>
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              登录
-            </Button>
-          </Form.Item>
-        </Form>
+            <Form.Item
+              label="账户"
+              name="account"
+              rules={[{ required: true, message: '请输入账户' }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="密码"
+              name="password"
+              rules={[{ required: true, message: '请输入密码' }]}
+            >
+              <Input.Password />
+            </Form.Item>
+            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+              <Button type="primary" htmlType="submit">
+                登录
+              </Button>
+            </Form.Item>
+          </Form>
+        </div>
       </div>
-    </div>
+    </LoginContainer>
   )
 }
