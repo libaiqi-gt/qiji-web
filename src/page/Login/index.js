@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Form, Input, Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import webApi from 'api'
@@ -12,6 +12,8 @@ export default function Login() {
   const navigate = useNavigate();
   const setUserInfo = useSetRecoilState(userInfoAtom);
   const [isLogin, setIsLogin] = useState(true);
+  const registerForm = useRef(null);
+  const loginForm = useRef(null);
   // 登录
   const onLogin = (values) => {
     webApi.userLogin(values).then(res => {
@@ -30,7 +32,31 @@ export default function Login() {
   };
   // 注册
   const onRegister = (values) => {
-    console.log(values);
+    console.log(registerForm, '查看');
+    if (values.regPassword === values.confirmPassword) {
+      const params = {
+        account: values.regAccount,
+        password: values.regPassword
+      };
+      webApi.addUser(params).then(res => {
+        console.log(res, '查看');
+        if (res.code === 200) {
+          registerForm.current.setFieldsValue({
+            regAccount: '',
+            regPassword: '',
+            confirmPassword: ''
+          });
+          setIsLogin(true);
+          loginForm.current.setFieldsValue({
+            ...res.data
+          });
+        }
+      }).catch(err => {
+        message.error(err.message);
+      });
+    } else {
+      message.error('两次密码不一致');
+    }
   }
 
   return (
@@ -38,7 +64,7 @@ export default function Login() {
       <div tw="w-96 flex flex-col justify-center items-center rounded-lg shadow-lg bg-white">
         <h1 tw="text-3xl py-6">{isLogin ? '登录' : '注册'}</h1>
         {isLogin ? 
-          <Form onFinish={onLogin}>
+          <Form onFinish={onLogin} ref={loginForm}>
             <Form.Item
               label="账户"
               name="account"
@@ -59,17 +85,17 @@ export default function Login() {
             </Form.Item>
           </Form>
           :
-          <Form onFinish={onRegister} labelCol={{ span: 7 }}>
+          <Form onFinish={onRegister} labelCol={{ span: 7 }} ref={registerForm}>
             <Form.Item
               label="账户"
-              name="account"
+              name="regAccount"
               rules={[{ required: true, message: '请输入账户' }]}
             >
               <Input />
             </Form.Item>
             <Form.Item
               label="密码"
-              name="password"
+              name="regPassword"
               rules={[{ required: true, message: '请输入密码' }]}
             >
               <Input.Password />
