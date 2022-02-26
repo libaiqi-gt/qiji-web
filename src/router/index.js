@@ -1,9 +1,9 @@
 import * as AntdIcons from '@ant-design/icons'
 import { createElement, lazy } from 'react'
-import Home from "../page/Home";
 
 const WelCome = lazy(() => import('../page/WelCome'));
 const UserInfo = lazy(() => import('../page/Home/UserInfo'));
+const IntegralMall = lazy(() => import('../page/IntegralMall'));
 
 export const routeConfig = [
   {
@@ -29,7 +29,7 @@ export const routeConfig = [
   },
   {
     path: '/main/integralMall',
-    element: <Home/>,
+    element: <IntegralMall/>,
     name: '积分中心',
     menuType: 'MENU',
     icon: createElement(AntdIcons['GiftOutlined']),

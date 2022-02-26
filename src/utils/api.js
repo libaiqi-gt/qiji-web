@@ -23,18 +23,17 @@ api.interceptors.request.use(async config => {
   return config;
 })
 
-api.interceptors.response.use(({ data, status }) => {
-  if (status === 401) {
-    // 路由跳转至登录页面
-    window.location.href = '/login';
-  }
-  console.log(data, '进入1');
+api.interceptors.response.use(({ data }) => {
   if (data instanceof Blob || data.code === 200) {
     return data;
   } else {
     return Promise.reject({message: data.msg});
   }
 }, error => {
+  if (error.response.status === 401) {
+    window.location.href = '/login';
+    error.message = '登录已过期';
+  }
   if (error.message === 'Network Error') {
     error.message = '抱歉，系统正在维护中，请稍后重试！';
   }

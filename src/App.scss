@@ -2,3 +2,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.page_loading {
+  width: 100%;
+  height: 100%;
+  .ant-spin-container {
+    width: 100%;
+    height: 100%;
+    .ant-layout-content {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

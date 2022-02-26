@@ -10,7 +10,7 @@ export default function App() {
   useEffect(() => {
     const token = localStorage.getItem('Authorization');
     if (!token) navigate('/login');
-  }, [])
+  }, []);
 
   return (
     <Routes>

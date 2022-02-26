@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Form, Input, Button, message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import webApi from 'api'
-import { userInfoAtom } from 'store/userInfoAtom'
+import { userInfoAtom } from 'store/storeAtom'
 import { useSetRecoilState } from 'recoil'
 import 'twin.macro'
 import "styled-components/macro"
