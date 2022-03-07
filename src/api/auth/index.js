@@ -29,6 +29,17 @@ const auth = {
    addUser(params) {
     return api.post(`${modules}/addUser`, params);
   },
+  /**
+   * POST 用户信息更新
+   * @param {Object} params
+   * @param {String} userGuid
+   * @param {String} phoneNumber
+   * @param {String} userName
+   * @param {String} userEmail
+   */
+   updateUserInfo(params) {
+    return api.post(`${modules}/updateUserInfo`, params);
+  },
 }
 
 export default auth;

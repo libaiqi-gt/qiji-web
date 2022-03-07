@@ -32,7 +32,6 @@ export default function Login() {
   };
   // 注册
   const onRegister = (values) => {
-    console.log(registerForm, '查看');
     if (values.regPassword === values.confirmPassword) {
       const params = {
         account: values.regAccount,

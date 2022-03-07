@@ -4,6 +4,7 @@ import { createElement, lazy } from 'react'
 const WelCome = lazy(() => import('../page/WelCome'));
 const UserInfo = lazy(() => import('../page/Home/UserInfo'));
 const IntegralMall = lazy(() => import('../page/IntegralMall'));
+const DailyPlan = lazy(() => import('../page/Home/DailyPlan'));
 
 export const routeConfig = [
   {
@@ -24,7 +25,14 @@ export const routeConfig = [
         name: '个人信息',
         menuType: 'MENU',
         icon: createElement(AntdIcons['BarsOutlined'])
-      }
+      },
+      {
+        path: '/main/Home/DailyPlan',
+        element: <DailyPlan/>,
+        name: '每日计划',
+        menuType: 'MENU',
+        icon: createElement(AntdIcons['ClockCircleOutlined'])
+      },
     ]
   },
   {
